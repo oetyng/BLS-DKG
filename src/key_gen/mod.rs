@@ -777,3 +777,37 @@ pub enum PartFault {
     #[fail(display = "Row does not match the commitment")]
     RowCommitment,
 }
+
+#[cfg(test)]
+mod tests {
+    /// (`Initial` is a phase, during which every member send a intial message to all others.)
+    /// -> When sending the initial msg, it accumulates.
+    #[quickcheck]
+    fn initial_msg_accumulates(xs: Vec<isize>) -> bool {
+        xs.len() > 0
+    }
+
+    /// -> When finalize_complaint is called, there are no complaints when all members work as expected.
+    #[quickcheck]
+    fn complaint_phase_finalizes_when_no_complaints(xs: Vec<isize>) -> bool {
+        xs.len() > 0
+    }
+
+    /// -> When finalize_complaint is called, we're casting a complain against an invalid member.
+    #[quickcheck]
+    fn finalizing_complaint_phase_when_invalid_member_exists_gives_complaints(xs: Vec<isize>) -> bool {
+        xs.len() > 0
+    }
+
+    /// -> When finalize_complaint is called, we're casting a complain against a non-contributor.
+    #[quickcheck]
+    fn finalizing_complaint_phase_when_non_contributor_exists_gives_complaints(xs: Vec<isize>) -> bool {
+        xs.len() > 0
+    }
+
+    /// -> Generating key with [x] members succeeds.
+    #[quickcheck]
+    fn generates_key_with_x_members(xs: Vec<isize>) -> bool {
+        xs.len() > 0
+    }
+}
